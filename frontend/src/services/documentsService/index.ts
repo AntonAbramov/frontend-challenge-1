@@ -23,14 +23,4 @@ export const getDocument = async (documentId: string) => {
   return response.data;
 };
 
-export const removeDocument = async (documentId: string) => {
-  await api.delete(`documents/delete/${documentId}`);
-};
-
-export const updateDocument = async (documentId: string, document: DocumentInterface) => {
-  await api.put(`documents/update/${documentId}`, {
-    document,
-  });
-};
-
 export * from "./types.ts";
