@@ -6,7 +6,9 @@ export const uploadDocument = async (document: File) => {
   const formData = new FormData();
   formData.set("document", document);
 
-  await api.post("documents/upload", formData);
+  const response: AxiosResponse<DocumentInterface> = await api.post("documents/upload", formData);
+
+  return response.data;
 };
 
 export const getPublicDocuments = async () => {

@@ -1,6 +1,7 @@
 import { UserInterface } from "~/services";
 
 export interface DocumentInterface {
+  id: string;
   documentFileUrl: string;
   owner: UserInterface;
 }

@@ -42,7 +42,7 @@ export const Login = () => {
             <TextInput {...field} label="Write your name" placeholder="Please enter your name" size="md" />
           )}
         />
-        {errors.name?.message && <p className="text-red">{errors.name.message}</p>}
+        {errors.name?.message && <p className="text-red-500">{errors.name.message}</p>}
         <Button type="submit" fullWidth mt="xl" size="md">
           Login
         </Button>
