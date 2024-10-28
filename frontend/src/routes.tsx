@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import BasicLayout from "./layout/BasicLayout";
-import NotFoundPage from "./pages/error/NotFound";
-import MainPage from "./pages/index";
+import MainPage from "~/pages/MainPage.tsx";
 import { PrivateLayout } from "./layout/PrivateLayout.tsx";
 import { PublicDocuments } from "./pages/Documents/PublicDocuments";
 import { UploadDocument } from "./pages/Documents/UploadDocument";

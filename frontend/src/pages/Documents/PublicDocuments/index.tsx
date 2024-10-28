@@ -28,7 +28,8 @@ export const PublicDocuments = () => {
     <>
       {loading && <Loader />}
       <div className="flex flex-col gap-1 mx-auto mt-5">
-        {documents.map((document) => (
+        {!documents?.length && <p className="text-center">No data to show</p>}
+        {documents?.map((document) => (
           <div key={document.id} className={clsx("flex gap-2 items-center", document.id)}>
             <p>{document.id}</p>
             <a href={document.documentFileUrl} download={`${document.id}.json`}>

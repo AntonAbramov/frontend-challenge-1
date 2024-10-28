@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mantine/core";
+import { DocumentLine } from "~/services";
 import { Uploader } from "./Uploader";
 import { PreviewTable } from "./PreviewTable";
-import { DocumentLine } from "~/services";
 
 export const UploadDocument = () => {
   const [currentDocument, setCurrentDocument] = useState<DocumentLine[] | undefined>();

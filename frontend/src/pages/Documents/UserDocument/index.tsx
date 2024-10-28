@@ -21,6 +21,9 @@ export const UserDocument = observer(() => {
           navigate("/", { replace: true });
         }
       })
+      .catch(() => {
+        navigate("/", { replace: true });
+      })
       .finally(() => {
         setLoading(false);
       });
