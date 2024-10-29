@@ -1,10 +1,12 @@
 import { createTheme, MantineProvider } from "@mantine/core";
 import { RouterProvider } from "react-router-dom";
+import { SnackbarProvider } from "notistack";
 import router from "./routes";
 
 export default function App() {
   return (
     <MantineProvider theme={theme}>
+      <SnackbarProvider anchorOrigin={{ vertical: "top", horizontal: "right" }} />
       <RouterProvider router={router} />
     </MantineProvider>
   );
