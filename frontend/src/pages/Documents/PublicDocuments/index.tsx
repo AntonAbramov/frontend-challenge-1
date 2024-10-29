@@ -41,19 +41,32 @@ export const PublicDocuments = () => {
 
   return (
     <div className="w-full">
-      <Button onClick={onBack}>Back</Button>
-      <h1 className="text-center text-2xl">Documents</h1>
-      {loading && <Loader />}
-      <div className="flex flex-col gap-1 mt-5 items-center">
-        {!documents?.length && <p className="text-center">No data to show</p>}
-        {documents?.map((document) => (
-          <div key={document.id} className={clsx("flex gap-2 items-center", formatDocumentId(document.id))}>
-            <p>{document.id}</p>
-            <a href={getDownloadUrl(document)} target="_blank" download={`${document.id}.json`}>
-              <Button>Download</Button>
-            </a>
-          </div>
-        ))}
+      <div className="container mx-auto px-4 py-8 max-w-7xl">
+        <Button variant="outline" size="sm" className="mb-6" onClick={onBack}>
+          Back
+        </Button>
+        {/*<Button onClick={onBack}>Back</Button>*/}
+        <h1 className="text-center text-2xl">Documents</h1>
+        {loading && <Loader />}
+        <div className="container mx-auto px-4 py-8 max-w-7xl">
+          {!documents?.length && <p className="text-center">No data to show</p>}
+          <ul className="space-y-4">
+            {documents?.map((document) => (
+              <li
+                key={document.id}
+                className={clsx(
+                  "flex justify-between items-center bg-card text-card-foreground p-4 rounded-lg shadow",
+                  formatDocumentId(document.id),
+                )}
+              >
+                <span className="text-sm">{document.id}</span>
+                <a href={getDownloadUrl(document)} target="_blank" download={`${document.id}.json`}>
+                  <Button>Download</Button>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

@@ -101,7 +101,7 @@ export const PreviewTable = ({ document }: PreviewTable) => {
   }, [document]);
 
   return (
-    <div className="h-screen w-full absolute">
+    <div className="h-screen w-full">
       {uploading && <Loader />}
       <div className="my-2">
         <Button onClick={approve}>Approve</Button>

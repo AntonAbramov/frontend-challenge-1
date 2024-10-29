@@ -14,8 +14,10 @@ export const UploadDocument = () => {
   };
 
   return (
-    <div>
-      <Button onClick={onBack}>Back</Button>
+    <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <Button variant="outline" size="sm" className="mb-6" onClick={onBack}>
+        Back
+      </Button>
       {!currentDocument && <Uploader onDocument={setCurrentDocument} />}
       {currentDocument && <PreviewTable document={currentDocument} />}
     </div>

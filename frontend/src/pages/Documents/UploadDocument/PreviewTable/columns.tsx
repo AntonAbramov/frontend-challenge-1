@@ -28,11 +28,11 @@ export const getColumns = (errors: Array<ZodIssue[]>) => {
     const errorMessage = getErrorMessage(node.rowIndex, column.colId);
 
     return (
-      <div className="flex flex-col min-w-[64px]">
+      <div className="flex flex-col min-w-8">
         <span title={value} className="line-clamp-1">
           {value ?? EMPTY_PLACEHOLDER}
         </span>
-        {errorMessage && <span className="text-red-500">{errorMessage}</span>}
+        {errorMessage && <span className="text-red-500 absolute top-[15px]">{errorMessage}</span>}
       </div>
     );
   };

@@ -64,7 +64,7 @@ export const Uploader = ({ onDocument }: UploaderProps) => {
         </div>
       </Dropzone>
 
-      <Button size="md" radius="xl" onClick={() => openRef.current?.()}>
+      <Button className="mt-4" size="md" radius="xl" onClick={() => openRef.current?.()}>
         Select file
       </Button>
     </div>
