@@ -1,8 +1,12 @@
 import { UserInterface } from "~/services";
 
+export interface UploadedDocumentInterface {
+  id: string;
+  ownerId: string;
+}
+
 export interface DocumentInterface {
   id: string;
-  documentFileUrl: string;
   owner: UserInterface;
 }
 

@@ -7,6 +7,7 @@ import { Loader } from "~/components/Loader.tsx";
 import { ACCESS_TOKEN } from "~/constants";
 import userStore from "~/store/userStore";
 import { login } from "~/services";
+import { useNavigate } from "react-router-dom";
 
 const userSchema = z.object({
   name: z.string().min(3),
@@ -14,6 +15,7 @@ const userSchema = z.object({
 
 export const Login = () => {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const {
     control,
     handleSubmit,
@@ -28,6 +30,7 @@ export const Login = () => {
 
     localStorage.setItem(ACCESS_TOKEN, response.accessToken);
     userStore.setUser(response.user);
+    navigate("/");
     setLoading(false);
   };
 

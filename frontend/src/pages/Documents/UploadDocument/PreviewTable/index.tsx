@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mantine/core";
-import { z } from "zod";
+import { z, ZodIssue } from "zod";
 import { DocumentLine, uploadDocument } from "~/services";
 import { Loader } from "~/components/Loader.tsx";
 import { getColumns } from "./columns.tsx";
@@ -52,14 +52,23 @@ export const PreviewTable = ({ document }: PreviewTable) => {
     });
   };
 
-  const { rows, columns } = useMemo(() => {
-    const result = validateDocument();
+  const downloadErrors = (newErrors: Array<ZodIssue[]>) => {
+    const preparedErrors = newErrors
+      .map((issues, index) => {
+        return { issues, rowIndex: index };
+      })
+      .filter(({ issues }) => issues.length);
 
-    const rows = result.map((item) => item.data);
-    const errors = result.map((item) => item.errors);
+    const blob = new Blob([JSON.stringify(preparedErrors)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = window.document.createElement("a");
+    a.href = url;
+    a.download = "document-issues.json";
+    a.click();
 
-    return { rows, columns: getColumns(errors) };
-  }, [document]);
+    a.remove();
+    URL.revokeObjectURL(url);
+  };
 
   const approve = () => {
     const blob = new Blob([JSON.stringify(document)], { type: "application/json" });
@@ -77,8 +86,22 @@ export const PreviewTable = ({ document }: PreviewTable) => {
       });
   };
 
+  const { rows, columns } = useMemo(() => {
+    const result = validateDocument();
+
+    const rows = result.map((item) => item.data);
+    const errors = result.map((item) => item.errors);
+
+    if (errors.filter((issues) => issues.length).length) {
+      downloadErrors(errors);
+      alert("The document contains issues; please take a look before approval!");
+    }
+
+    return { rows, columns: getColumns(errors), errors };
+  }, [document]);
+
   return (
-    <div className="h-screen absolute">
+    <div className="h-screen w-full absolute">
       {uploading && <Loader />}
       <div className="my-2">
         <Button onClick={approve}>Approve</Button>
