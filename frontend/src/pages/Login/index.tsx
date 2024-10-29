@@ -30,6 +30,7 @@ export const Login = () => {
 
     localStorage.setItem(ACCESS_TOKEN, response.accessToken);
     userStore.setUser(response.user);
+    userStore.pending = false;
     navigate("/");
     setLoading(false);
   };
